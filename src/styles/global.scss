@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap');
+@import "controls";
+@import "page";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+  list-style: none;
+  text-decoration: none;
+  outline: 0;
+  border: none;
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+  font-size: 10px;
+}
+
+.fill-height {
+  height: 100%;
+}
+
+$container-width-xl: 1140px;
+$container-width-lg: 960px;
+$container-width-md: 720px;
+$container-width-sm: 540px;
+$container-width-xs: 100%;
+
+$breakpoint-lg: 1199px;
+$breakpoint-md: 959px;
+$breakpoint-sm: 767px;
+$breakpoint-xs: 575px;
+$prefix: col;
+$grid_size: 12;
+
+.container {
+  width: $container-width-xl;
+  padding: {
+    right: $global;
+    left: $global;
+  }
+  margin: {
+    right: auto;
+    left: auto;
+  }
+  &-fluid {
+    width: 100%;
+    padding: {
+      right: $global;
+      left: $global;
+    }
+    margin: {
+      right: auto;
+      left: auto;
+    }
+  }
+}
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: {
+    right: -$global;
+    left: -$global;
+  }
+}
+
+.#{$prefix} {
+  flex: auto;
+  padding: {
+    left: $global;
+    right: $global;
+  }
+}
+
+@mixin breakpoint($name) {
+  @if $name == xs {
+    @media screen and (max-width: $breakpoint-xs) {
+      @content
+    }
+  } @else if $name == sm {
+    @media screen and (max-width: $breakpoint-sm) {
+      @content
+    }
+  } @else if $name == md {
+    @media screen and (max-width: $breakpoint-md) {
+      @content
+    }
+  } @else if $name == lg {
+    @media screen and (max-width: $breakpoint-lg) {
+      @content
+    }
+  }
+}
+
+@for $i from 1 through $grid_size {
+  .#{$prefix}-#{$i} {
+    max-width: percentage(calc($i / $grid_size));
+    flex: 0 0 percentage(calc($i / $grid_size));
+    padding: {
+      left: $global;
+      right: $global;
+    }
+  }
+  .#{$prefix}-offset-#{$i} {
+    margin: {
+      right: percentage(calc($i / $grid_size));
+    }
+  }
+}
+
+@each $size in xl, lg, md, sm, xs {
+
+  @include breakpoint(#{$size}) {
+
+    @for $i from 1 through $grid_size {
+      .#{$prefix}-#{$size}-#{$i} {
+        max-width: percentage(calc($i / $grid_size));
+        flex: 0 0 percentage(calc($i / $grid_size));
+        padding: {
+          left: $global;
+          right: $global;
+        }
+      }
+      .#{$prefix}-#{$size}-offset-#{$i} {
+        margin: {
+          right: percentage(calc($i / $grid_size));
+        }
+      }
+    }
+
+    .container {
+      @if $size == xs {
+        max-width: $container-width-xs;
+      } @else if $size == sm {
+        max-width: $container-width-sm;
+      } @else if $size == md {
+        max-width: $container-width-md;
+      } @else if $size == lg {
+        max-width: $container-width-lg;
+      } @else if $size == xl {
+        max-width: $container-width-xl;
+      }
+    }
+  }
+}

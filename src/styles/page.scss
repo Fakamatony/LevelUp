@@ -1,0 +1,157 @@
+@import "variables";
+@import "colors";
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $global;
+  color: $primary;
+  background: $secondaryAlt;
+  &__logo {
+    font-size: 3rem;
+  }
+}
+
+@mixin form-control {
+  border: none;
+  padding: .8rem .5rem;
+  border-radius: .4rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.app-input {
+  @include form-control;
+  background: $secondaryAlt;
+}
+
+.app-button {
+  @include form-control;
+  background: $primary;
+  color: $secondaryAlt;
+
+}
+
+section {
+  margin-top: $global * 4;
+}
+
+.main-content {
+  font-size: 1.6rem;
+  padding-bottom: $global;
+}
+
+img {
+  max-width: 100%;
+}
+
+.properties {
+  align-items: center;
+  .app-button {
+    margin-top: $global;
+    &:hover{
+      background: black;
+      color: $secondaryAlt;
+    }
+  }
+}
+
+.card {
+  margin-top: 1.6rem;
+  border-radius: $global;
+  background: $secondaryAlt;
+  padding: $global;
+  font-size: 1.4rem;
+  text-align: center;
+
+}
+
+.comment {
+  &__image {
+    overflow: hidden;
+  }
+}
+
+.feedback {
+  text-align: left;
+  &__username {
+    font-size: 1.8rem;
+    font-weight: 60;
+    padding-bottom: $global;
+    color: $primary
+  }
+  &__comment {
+    font-size: 1rem;
+  }
+  &__user-image {
+    border-radius: 100%;
+  }
+}
+
+.swiper {
+  &-wrapper {
+    margin-top: $global;
+  }
+  &-slide {
+    height: 33vh;
+    padding: 0 0 $global 0;
+    .card {
+      margin-top: 0;
+    }
+  }
+  &-pagination {
+    margin-bottom: 1rem;
+  }
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-price {
+  font-size: 3.6rem;
+  font-family: Helvetica, sans-serif;
+  color: #39464e;
+}
+
+.old-price {
+  position: relative;
+  color: #7f94a1;
+}
+
+.old-price:before {
+  border-bottom: .3rem solid red;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 50%;
+  transform: rotate(-12deg);
+}
+.timer__items {
+  display: flex;
+  font-size: 4.8rem;
+}
+.timer__item {
+  position: relative;
+  min-width: 6rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+.timer__item::before {
+  content: attr(data-title);
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 14px;
+}
+.timer__item:not(:last-child)::after {
+  content: ':';
+  position: absolute;
+  right: -1.5rem;
+}
